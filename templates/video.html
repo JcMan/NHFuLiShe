@@ -27,24 +27,34 @@
                 <a href="#" class="navbar-brand">内涵福利社</a>
             </div>
             <ul class="nav navbar-nav">
-                <li class="active"><a href="/joke/">段子</a></li>
+                <li><a href="/joke/">段子</a></li>
                 <li><a href="/picture/">趣图</a></li>
-                <li><a href="/video/">视频</a></li>
+                <li class="active"><a href="/video/">视频</a></li>
                 <li><a href="#">专辑</a></li>
             </ul>
         </div>
     </nav>
     <div class="container">
         <div class="row jokes">
-            {% for joke in jokes%}
+            {% for video in videos%}
                 <div class="col-md-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            <span class="glyphicon glyphicon-thumbs-up right">{{ joke.likes }}</span>
-                            <h3 class="panel-title">{{ joke.update_time }}</h3>
+                            <a href="{{ video.vsource_url }}" target="_blank" class="btn  playbtn right"><span class="glyphicon glyphicon-film"></span></a>
+                            <span class="glyphicon glyphicon-thumbs-up right">{{ video.likes }}</span>
+                            <h3 class="panel-title">{{ video.update_time }}</h3>
                         </div>
                         <div class="panel-body">
-                            {{joke.wbody}}
+                            <div class="media">
+                                <div class="media-left media-middle">
+                                    <a href="{{ video.vsource_url }}" target="_blank">
+                                        <img class="videopic"  src="{{ video.vpic_small }}" alt="">
+                                    </a>
+                                </div>
+                                <div class="media-body">
+                                    <p>{{ video.wbody }}</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

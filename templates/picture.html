@@ -27,8 +27,8 @@
                 <a href="#" class="navbar-brand">内涵福利社</a>
             </div>
             <ul class="nav navbar-nav">
-                <li class="active"><a href="/joke/">段子</a></li>
-                <li><a href="/picture/">趣图</a></li>
+                <li><a href="/joke/">段子</a></li>
+                <li class="active"><a href="/picture/">趣图</a></li>
                 <li><a href="/video/">视频</a></li>
                 <li><a href="#">专辑</a></li>
             </ul>
@@ -36,15 +36,16 @@
     </nav>
     <div class="container">
         <div class="row jokes">
-            {% for joke in jokes%}
+            {% for pic in pictures%}
                 <div class="col-md-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            <span class="glyphicon glyphicon-thumbs-up right">{{ joke.likes }}</span>
-                            <h3 class="panel-title">{{ joke.update_time }}</h3>
+                            <span class="glyphicon glyphicon-thumbs-up right">{{ pic.likes }}</span>
+                            <h3 class="panel-title">{{ pic.update_time }}</h3>
                         </div>
                         <div class="panel-body">
-                            {{joke.wbody}}
+                            <p>{{pic.wbody}}</p>
+                            <img class="picture" src="{{ pic.wpic_middle }}"/>
                         </div>
                     </div>
                 </div>

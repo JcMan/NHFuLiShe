@@ -11,4 +11,27 @@
     margin-right: 20px;
 }
 
+.right{
+    float: right;
+}
+
+.picture{
+    width: auto;
+    max-width: 100%;
+    height: auto;
+}
+
+.videopic{
+    width: 160px;
+    height: 90px;
+}
+
+
+.playbtn{
+    width: auto;
+    height: 20px;
+    font-size: 1px;
+    padding: 2px;
+}
+
 
