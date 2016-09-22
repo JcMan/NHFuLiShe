@@ -38,4 +38,17 @@
     max-height: 200px;
 }
 
+.albumpic{
+    width: 70px;
+    height: 70px;
+}
+
+.beautypic{
+    width: 100%;
+    height: auto;
+}
+.piccontent{
+    width: 50%;
+}
+
 

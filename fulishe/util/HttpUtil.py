@@ -44,7 +44,7 @@ def getVideoUrl(lastid):
 
 
 def getVideos(lastid):
-    result = requests.get(getVideoUrl(lastid)) 
+    result = requests.get(getVideoUrl(lastid))
     items = json.loads(str(result.content))
     items = items['items']
     for item in items:
@@ -55,6 +55,47 @@ def getVideos(lastid):
         item['update_time'] = time.strftime("%Y/%m/%d %H:%M", time.localtime(float(t)))
         item['likes'] = str(int(float(item['likes'])))
     return items
+
+
+def getAlbumUrl(lastid):
+    url = 'http://fuli1024.com/weibofun/albums/album_list.php?apiver=20000&page=3&page_size=20&max_timestamp={max}&latest_viewed_ts={last}&platform=aphone&sysver=5.1&appver=1.2.2&buildver=1.2.2&app_ver=10202&uid=-1&udid=a_fe79a4abf13e4f7d&channel=store360'
+    url = url.replace("{max}", lastid)
+    url = url.replace("{last}", lastid)
+    return url
+
+
+def getAlbums(lastid):
+    result = requests.get(getAlbumUrl(lastid))
+    items = json.loads(str(result.content))
+    items = items['items']
+    for item in items:
+        if len(item['adesc'])>40:
+            item['adesc'] = (item['adesc'][0:40]+'...')
+        item['likes'] = str(int(float(item['likes'])))
+        item['id'] = item['update_time']
+    return items
+
+
+def getalbumvideoandbeautyurl(aid,page):
+    url = 'http://fuli1024.com/weibofun/albums/album_content.php?apiver=10901&aid={aid}&page={page}&page_size=30&get_album=0&platform=aphone&sysver=5.1&appver=1.2.2&buildver=1.2.2&app_ver=10202&uid=-1&udid=a_fe79a4abf13e4f7d&channel=store360'
+    url = url.replace("{aid}",aid)
+    url = url.replace("{page}",page)
+    return url
+
+def getAlbumVideoAndBeauty(aid,page):
+    result = requests.get(getalbumvideoandbeautyurl(aid, page))
+    items = json.loads(str(result.content))
+    items = items['items']
+    for item in items:
+        t = int(item['update_time'])
+        item['id'] = item['update_time']
+        item['update_time'] = time.strftime("%Y/%m/%d %H:%M", time.localtime(float(t)))
+        item['likes'] = str(int(float(item['likes'])))
+    return items
+
+
+
+
 
 
 

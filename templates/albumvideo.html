@@ -4,12 +4,12 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>内涵福利社</title>
-    <script src="../static/js/jquery.min.js"></script>
-    <script src="../static/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="../static/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../static/css/buttons.css">
-    <link rel="stylesheet" href="../static/css/joke.css">
-    <link rel="shortcut icon" href="../static/img/logo_45.jpg" type="image/x-icon">
+    <script src="/static/js/jquery.min.js"></script>
+    <script src="/static/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/css/buttons.css">
+    <link rel="stylesheet" href="/static/css/joke.css">
+    <link rel="shortcut icon" href="/static/img/logo_45.jpg" type="image/x-icon">
     <style media="screen">
       body{
         background-color:#F7F7F2;
@@ -29,8 +29,8 @@
             <ul class="nav navbar-nav">
                 <li><a href="/joke/">段子</a></li>
                 <li><a href="/picture/">趣图</a></li>
-                <li class="active"><a href="/video/">视频</a></li>
-                <li><a href="/album/">专辑</a></li>
+                <li><a href="/video/">视频</a></li>
+                <li class="active"><a href="/album/">专辑</a></li>
             </ul>
         </div>
     </nav>
@@ -40,7 +40,6 @@
                 <div class="col-md-6">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            <a href="{{ video.vsource_url }}" target="_blank" class="btn  playbtn right"><span class="glyphicon glyphicon-film"></span></a>
                             <span class="glyphicon glyphicon-thumbs-up right">{{ video.likes }}</span>
                             <h3 class="panel-title">{{ video.update_time }}</h3>
                         </div>
@@ -48,7 +47,7 @@
                             <div class="media">
                                 <div class="media-left media-middle">
                                     <a href="{{ video.vsource_url }}" target="_blank">
-                                        <img class="videopic"  src="{{ video.vpic_small }}" alt="">
+                                        <img class="albumpic"  src="{{ video.vpic_small }}" alt="">
                                     </a>
                                 </div>
                                 <div class="media-body">
@@ -59,10 +58,16 @@
                     </div>
                 </div>
             {% endfor %}
-            <ul class="pager jokenext">
-                <li><a href="{{ lastid }}" class="btn btn-default">更多</a></li>
-            </ul>
+
         </div>
+        <ul class="pager">
+            {% if next != 1 %}
+                <li><a href="/album/video/{{ aid }}/{{ pre}}">上一页</a></li>
+            {% endif %}
+            {% if next != 3 %}
+                <li><a href="/album/video/{{ aid }}/{{ next}}">下一页</a></li>
+            {% endif %}
+        </ul>
     </div>
 </body>
 </html>

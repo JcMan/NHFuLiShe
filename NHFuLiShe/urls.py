@@ -13,4 +13,10 @@ urlpatterns = patterns('fulishe.views',
     url(r'^picture/(\d+)$','morepicture'),
     url(r'^video/$', 'video'),
     url(r'^video/(\d+)$','morevideo'),
+    url(r'^album/$', 'album'),
+    url(r'^album/(\d+)$','morealbum'),
+    url(r'^album/beauty/(\d+)/(\d+)$','albumbeauty'),
+    url(r'^album/video/(\d+)/(\d+)','albumvideo'),
+    url(r'^album/pic/(\d+)/(\d+)$','albumpic'),
+
 )

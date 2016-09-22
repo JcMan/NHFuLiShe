@@ -29,30 +29,41 @@
             <ul class="nav navbar-nav">
                 <li><a href="/joke/">段子</a></li>
                 <li><a href="/picture/">趣图</a></li>
-                <li class="active"><a href="/video/">视频</a></li>
-                <li><a href="/album/">专辑</a></li>
+                <li><a href="/video/">视频</a></li>
+                <li class="active"><a href="/album/">专辑</a></li>
             </ul>
         </div>
     </nav>
     <div class="container">
         <div class="row jokes">
-            {% for video in videos%}
+            {% for album in albums%}
                 <div class="col-md-6">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            <a href="{{ video.vsource_url }}" target="_blank" class="btn  playbtn right"><span class="glyphicon glyphicon-film"></span></a>
-                            <span class="glyphicon glyphicon-thumbs-up right">{{ video.likes }}</span>
-                            <h3 class="panel-title">{{ video.update_time }}</h3>
+                            <span class="glyphicon glyphicon-thumbs-up right">{{ album.likes }}</span>
+                            <h3 class="panel-title">{{ album.aname }}</h3>
                         </div>
                         <div class="panel-body">
                             <div class="media">
                                 <div class="media-left media-middle">
-                                    <a href="{{ video.vsource_url }}" target="_blank">
-                                        <img class="videopic"  src="{{ video.vpic_small }}" alt="">
-                                    </a>
+                                    {% if album.category == 'weibo_girls' %}
+                                        <a href="/album/beauty/{{ album.aid }}/0" target="_blank">
+                                            <img class="albumpic"  src="{{ album.aicon }}" alt="">
+                                        </a>
+                                    {% endif %}
+                                    {% if album.category == 'weibo_videos' %}
+                                        <a href="/album/video/{{ album.aid }}/0" target="_blank">
+                                            <img class="albumpic"  src="{{ album.aicon }}" alt="">
+                                        </a>
+                                    {% endif %}
+                                    {% if album.category == 'weibo_pics' %}
+                                            <a href="/album/pic/{{ album.aid }}/0" target="_blank">
+                                                <img class="albumpic"  src="{{ album.aicon }}" alt="">
+                                            </a>
+                                    {% endif %}
                                 </div>
                                 <div class="media-body">
-                                    <p>{{ video.wbody }}</p>
+                                    <p>{{ album.adesc }}</p>
                                 </div>
                             </div>
                         </div>

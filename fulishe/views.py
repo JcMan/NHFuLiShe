@@ -40,3 +40,57 @@ def morevideo(req,lastid):
     lastid = videos[-1]['id']
     return render_to_response('video.html', {'videos':videos,'lastid':lastid})
 
+
+def album(req):
+    albums = HttpUtil.getAlbums('-1')
+    lastid = albums[-1]['id']
+    return render_to_response('album.html', {'albums':albums,'lastid':lastid})
+
+
+def morealbum(req,lastid):
+    albums = HttpUtil.getAlbums(lastid)
+    lastid = albums[-1]['id']
+    return render_to_response('album.html', {'albums':albums,'lastid':lastid})
+
+
+def albumbeauty(req,aid,page):
+    albums = HttpUtil.getAlbumVideoAndBeauty(aid, page)
+    pre = 0
+    page = int(page)
+    if page > 0:
+        pre = page -1
+    page = page + 1
+    more = 1
+    if len(albums)==0:
+        page = page - 2
+        more = 0
+    return render_to_response('albumbeauty.html', {'albums': albums, 'next': page,'pre':pre, 'aid': aid,'more':more})
+
+
+def albumpic(req,aid,page):
+    pics = HttpUtil.getAlbumVideoAndBeauty(aid,page)
+    pre = 0
+    page = int(page)
+    if page > 0:
+        pre = page - 1
+    page = page + 1
+    more = 1
+    if len(pics) == 0:
+        page = page - 2
+        more = 0
+    return render_to_response('albumpic.html', {'pics': pics, 'next': page,'pre':pre, 'aid': aid,'more':more})
+
+
+def albumvideo(req,aid,page):
+    videos = HttpUtil.getAlbumVideoAndBeauty(aid,page)
+    pre = 0
+    page = int(page)
+    if page > 0:
+        pre = page - 1
+    page = page + 1
+    more = 1
+    if len(videos) == 0:
+        page = page - 2
+        more = 0
+    return render_to_response('albumvideo.html', {'videos': videos, 'next': page,'pre':pre, 'aid': aid,'more':more})
+
