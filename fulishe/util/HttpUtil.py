@@ -42,6 +42,7 @@ def getVideoUrl(lastid):
     url = url.replace("{last}", lastid)
     return url
 
+
 def getVideos(lastid):
     result = requests.get(getVideoUrl(lastid))
     items = json.loads(str(result.content))
@@ -49,6 +50,8 @@ def getVideos(lastid):
     for item in items:
         t = int(item['update_time'])
         item['id'] = item['update_time']
+        if len(item['wbody'])>30:
+            item['wbody'] = (item['wbody'][0:30]+'...')
         item['update_time'] = time.strftime("%Y/%m/%d %H:%M", time.localtime(float(t)))
         item['likes'] = str(int(float(item['likes'])))
     return items
