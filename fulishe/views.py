@@ -1,7 +1,8 @@
 # -*- coding:utf-8 -*-
 from django.shortcuts import render_to_response
+from django.template import Context, loader
 from util import HttpUtil
-
+from django.http import HttpResponse
 # Create your views here.
 
 
@@ -11,9 +12,13 @@ def joke(req):
     return render_to_response('joke.html', {'jokes':jokes,'lastid':lastid})
 
 
-def morejoke(req,lastid):
+def morejoke(req, lastid):
     jokes = HttpUtil.getJokes(lastid)
     lastid = jokes[-1]['id']
+    if req.is_ajax():
+        t = loader.get_template('ajax_joke.html')
+        html = t.render(Context({'jokes': jokes}))
+        return HttpResponse(html)
     return render_to_response('joke.html', {'jokes': jokes, 'lastid': lastid})
 
 
