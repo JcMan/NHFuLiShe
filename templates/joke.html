@@ -35,7 +35,7 @@
         </div>
     </nav>
     <div class="container">
-        <div class="row jokes">
+        <div class="row jokes" id="id_joke">
             {% for joke in jokes%}
                 <div class="col-md-12">
                     <div class="panel panel-default">
@@ -43,16 +43,33 @@
                             <span class="glyphicon glyphicon-thumbs-up right">{{ joke.likes }}</span>
                             <h3 class="panel-title">{{ joke.update_time }}</h3>
                         </div>
-                        <div class="panel-body">
+                        <div class="panel-body" id="{{ joke.id }}">
                             {{joke.wbody}}
                         </div>
                     </div>
                 </div>
             {% endfor %}
-            <ul class="pager jokenext">
-                <li><a href="{{ lastid }}" class="btn btn-default">更多</a></li>
-            </ul>
         </div>
     </div>
+    <script>
+        $(window).scroll(function(){
+        　　var scrollTop = $(this).scrollTop();
+        　　var scrollHeight = $(document).height();
+        　　var windowHeight = $(this).height();
+        　　if(scrollTop + windowHeight == scrollHeight){
+              var ele = document.getElementsByClassName("panel-body");
+              var b = ele[ele.length-1];
+              var lastid = b.getAttribute("id");
+        　　　 var nexturl = '/joke/'+lastid;
+              jQuery.ajax({
+                  type:'GET',
+                  url:nexturl,
+                  success:function (response){
+                      $('#id_joke').append(response.toString());
+                  }
+              })
+        　　}
+        });
+    </script>
 </body>
 </html>

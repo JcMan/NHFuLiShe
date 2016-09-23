@@ -19,7 +19,7 @@ def getJokes(lastid):
 
 
 def getPictureUrl(lastid):
-    url = 'http://fuli1024.com/weibofun/weibo_list.php?apiver=10901&category=weibo_pics&page=0&page_size=30&max_timestamp={max}&latest_viewed_ts={last}&platform=aphone&sysver=5.1&appver=1.2.3&buildver=1.2.3&app_ver=10203&uid=-1&udid=a_fe79a4abf13e4f7d&channel=meizu'
+    url = 'http://fuli1024.com/weibofun/weibo_list.php?apiver=10901&category=weibo_pics&page=0&page_size=5&max_timestamp={max}&latest_viewed_ts={last}&platform=aphone&sysver=5.1&appver=1.2.3&buildver=1.2.3&app_ver=10203&uid=-1&udid=a_fe79a4abf13e4f7d&channel=meizu'
     url = url.replace("{max}", lastid)
     url = url.replace("{last}", lastid)
     return url

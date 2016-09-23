@@ -1,0 +1,13 @@
+{% for joke in jokes%}
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <span class="glyphicon glyphicon-thumbs-up right">{{ joke.likes }}</span>
+                    <h3 class="panel-title">{{ joke.update_time }}</h3>
+                </div>
+                <div class="panel-body" id="{{ joke.id }}">
+                    {{joke.wbody}}
+                </div>
+            </div>
+        </div>
+{% endfor %}
