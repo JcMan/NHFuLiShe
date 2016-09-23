@@ -3,7 +3,7 @@
 
 - 开发环境：Ubuntu14.04 Python2.7
 - 开发工具：PyCharm 专业版 2016.2.3
-- 开发框架：Django Bootstrap
+- 开发框架：Django(1.6.1) Bootstrap
 
 ## 功能
 本项目包括四个主要模块：
