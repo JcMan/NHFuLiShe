@@ -69,6 +69,10 @@ def albumbeauty(req,aid,page):
     if len(albums)==0:
         page = page - 2
         more = 0
+    if req.is_ajax():
+        t = loader.get_template('ajax_album_beauty.html')
+        html = t.render(Context({'albums': albums}))
+        return HttpResponse(html)
     return render_to_response('albumbeauty.html', {'albums': albums, 'next': page,'pre':pre, 'aid': aid,'more':more})
 
 

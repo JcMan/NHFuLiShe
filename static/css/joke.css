@@ -43,10 +43,15 @@
     height: 70px;
 }
 
+.album{
+    height: 150px;
+}
+
 .beautypic{
     width: 100%;
     height: auto;
 }
+
 .piccontent{
     width: 50%;
 }

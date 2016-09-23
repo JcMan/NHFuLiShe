@@ -36,24 +36,34 @@
             </ul>
         </div>
     </nav>
+
     <div class="container">
         <div class="jokes">
-            <div class="waterfall">
-                {% for album in albums%}
-                    <div class="pin">
-                        <img class="beautypic" src="{{album.wpic_middle}}" alt="">
-                    </div>
-                {% endfor %}
+            <div class="waterfall" id="waterfall">
+                {% include 'ajax_album_beauty.html' %}
             </div>
-            <ul class="pager">
-                {% if next != 1 %}
-                    <li><a href="/album/beauty/{{ aid }}/{{ pre}}">上一页</a></li>
-                {% endif %}
-                {% if next != 3 %}
-                    <li><a href="/album/beauty/{{ aid }}/{{ next}}">下一页</a></li>
-                {% endif %}
-            </ul>
+            <span id="page_index" hidden>1</span>
         </div>
     </div>
+    <script>
+        $(window).scroll(function(){
+        　　var scrollTop = $(this).scrollTop();
+        　　var scrollHeight = $(document).height();
+        　　var windowHeight = $(this).height();
+        　　if(scrollTop + windowHeight == scrollHeight){
+              page = $('#page_index').text();
+        　　　 var nexturl = '/album/beauty/{{ aid }}/'+page;
+              jQuery.ajax({
+                  type:'GET',
+                  url:nexturl,
+                  success:function (response){
+                      $('#waterfall').append(response.toString());
+                      page = parseInt(page)+1;
+                      $('#page_index').html(page+'');
+                  }
+              })
+        　　}
+        });
+    </script>
 </body>
 </html>
