@@ -1,0 +1,61 @@
+ <nav class="navbar navbar-default navbar-fixed-top mynav" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <a href="#" class="navbar-brand">内涵福利社</a>
+        </div>
+        <ul class="nav navbar-nav">
+            {% if pagetype == 'joke' %}
+                <li class="active">
+                    <a href="/joke/">
+                        <img src="/static/img/joke.png" height="20px" alt="">&nbsp;段子
+                    </a>
+                </li>
+            {% else %}
+                <li>
+                    <a href="/joke/">
+                        <img src="/static/img/joke.png" height="20px" alt="">&nbsp;段子
+                    </a>
+                </li>
+            {% endif %}
+            {% if pagetype == 'pic' %}
+                <li class="active">
+                    <a href="/picture/">
+                        <img src="/static/img/fun.png" height="20px" alt="">&nbsp;趣图
+                    </a>
+                </li>
+            {%  else %}
+                <li>
+                    <a href="/picture/">
+                        <img src="/static/img/fun.png" height="20px" alt="">&nbsp;趣图
+                    </a>
+                </li>
+            {% endif %}
+            {% if pagetype == 'video' %}
+                <li class="active">
+                    <a href="/video/">
+                        <img src="/static/img/video.png" height="20px" alt="">&nbsp;视频
+                    </a>
+                </li>
+            {% else %}
+                <li>
+                    <a href="/video/">
+                        <img src="/static/img/video.png" height="20px" alt="">&nbsp;视频
+                    </a>
+                </li>
+            {% endif %}
+            {% if pagetype == 'album' %}
+                <li class="active">
+                    <a href="/album/">
+                        <img src="/static/img/beauty.png" height="20px" alt="">&nbsp;专辑
+                    </a>
+                </li>
+            {% else %}
+                <li>
+                    <a href="/album/">
+                        <img src="/static/img/beauty.png" height="20px" alt="">&nbsp;专辑
+                    </a>
+                </li>
+            {% endif  %}
+        </ul>
+    </div>
+ </nav>

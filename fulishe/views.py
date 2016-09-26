@@ -9,7 +9,7 @@ from django.http import HttpResponse
 def joke(req):
     jokes = HttpUtil.getJokes('-1')
     lastid = jokes[-1]['id']
-    return render_to_response('joke.html', {'jokes':jokes,'lastid':lastid})
+    return render_to_response('joke.html', {'jokes':jokes,'lastid': lastid,'pagetype':'joke'})
 
 
 def morejoke(req, lastid):
@@ -19,43 +19,43 @@ def morejoke(req, lastid):
         t = loader.get_template('ajax_joke.html')
         html = t.render(Context({'jokes': jokes}))
         return HttpResponse(html)
-    return render_to_response('joke.html', {'jokes': jokes, 'lastid': lastid})
+    return render_to_response('joke.html', {'jokes': jokes, 'lastid': lastid,'pagetype':'joke'})
 
 
 def picture(req):
     pictures = HttpUtil.getPictures('-1')
     lastid = pictures[-1]['id']
-    return render_to_response('picture.html', {'pictures': pictures,'lastid':lastid})
+    return render_to_response('picture.html', {'pictures': pictures,'lastid':lastid,'pagetype':'pic'})
 
 
 def morepicture(req,lastid):
     pictures = HttpUtil.getPictures(lastid)
     lastid = pictures[-1]['id']
-    return render_to_response('picture.html', {'pictures': pictures, 'lastid': lastid})
+    return render_to_response('picture.html', {'pictures': pictures, 'lastid': lastid,'pagetype':'pic'})
 
 
 def video(req):
     videos = HttpUtil.getVideos('-1')
     lastid = videos[-1]['id']
-    return render_to_response('video.html', {'videos':videos,'lastid':lastid})
+    return render_to_response('video.html', {'videos':videos,'lastid':lastid,'pagetype':'video'})
 
 
 def morevideo(req,lastid):
     videos = HttpUtil.getVideos(lastid)
     lastid = videos[-1]['id']
-    return render_to_response('video.html', {'videos':videos,'lastid':lastid})
+    return render_to_response('video.html', {'videos':videos,'lastid':lastid,'pagetype':'video'})
 
 
 def album(req):
     albums = HttpUtil.getAlbums('-1')
     lastid = albums[-1]['id']
-    return render_to_response('album.html', {'albums':albums,'lastid':lastid})
+    return render_to_response('album.html', {'albums':albums,'lastid':lastid,'pagetype':'album'})
 
 
 def morealbum(req,lastid):
     albums = HttpUtil.getAlbums(lastid)
     lastid = albums[-1]['id']
-    return render_to_response('album.html', {'albums':albums,'lastid':lastid})
+    return render_to_response('album.html', {'albums':albums,'lastid':lastid,'pagetype':'album'})
 
 
 def albumbeauty(req,aid,page):
@@ -63,31 +63,31 @@ def albumbeauty(req,aid,page):
     pre = 0
     page = int(page)
     if page > 0:
-        pre = page -1
-    page = page + 1
+        pre = page - 1
+    page += 1
     more = 1
-    if len(albums)==0:
-        page = page - 2
+    if len(albums) == 0:
+        page -= 2
         more = 0
     if req.is_ajax():
         t = loader.get_template('ajax_album_beauty.html')
         html = t.render(Context({'albums': albums}))
         return HttpResponse(html)
-    return render_to_response('albumbeauty.html', {'albums': albums, 'next': page,'pre':pre, 'aid': aid,'more':more})
+    return render_to_response('albumbeauty.html', {'albums': albums, 'next': page,'pre':pre, 'aid': aid,'more':more,'pagetype':'album'})
 
 
-def albumpic(req,aid,page):
+def albumpic(req, aid, page):
     pics = HttpUtil.getAlbumVideoAndBeauty(aid,page)
     pre = 0
     page = int(page)
     if page > 0:
         pre = page - 1
-    page = page + 1
+    page += 1
     more = 1
     if len(pics) == 0:
-        page = page - 2
+        page -= 2
         more = 0
-    return render_to_response('albumpic.html', {'pics': pics, 'next': page,'pre':pre, 'aid': aid,'more':more})
+    return render_to_response('albumpic.html', {'pics': pics, 'next': page,'pre':pre, 'aid': aid,'more':more,'pagetype':'album'})
 
 
 def albumvideo(req,aid,page):
@@ -96,10 +96,10 @@ def albumvideo(req,aid,page):
     page = int(page)
     if page > 0:
         pre = page - 1
-    page = page + 1
+    page += 1
     more = 1
     if len(videos) == 0:
-        page = page - 2
+        page -= 2
         more = 0
-    return render_to_response('albumvideo.html', {'videos': videos, 'next': page,'pre':pre, 'aid': aid,'more':more})
+    return render_to_response('albumvideo.html', {'videos': videos, 'next': page,'pre':pre, 'aid': aid,'more':more,'pagetype':'album'})
 
